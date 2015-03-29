@@ -1,5 +1,7 @@
 package com.google.gwt.proxyapp.server;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gwt.proxyapp.client.GreetingService;
 import com.google.gwt.proxyapp.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -28,9 +30,35 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		userAgent = escapeHtml(userAgent);
 
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo
-				+ ".<br><br>It looks like you are using:<br>" + userAgent;
+				+ ".<br><br>It looks like you are using:<br>" + userAgent  +
+				"<br><br> and your ip-address is " + getClientIpAddress();
 	}
-
+	/**
+	 * List of possible strings to check for remote client ip-address 
+    */
+	private static final String[] HEADERS_TO_TRY = { 
+	    "X-Forwarded-For",
+	    "Proxy-Client-IP",
+	    "WL-Proxy-Client-IP",
+	    "HTTP_X_FORWARDED_FOR",
+	    "HTTP_X_FORWARDED",
+	    "HTTP_X_CLUSTER_CLIENT_IP",
+	    "HTTP_CLIENT_IP",
+	    "HTTP_FORWARDED_FOR",
+	    "HTTP_FORWARDED",
+	    "HTTP_VIA",
+	    "REMOTE_ADDR" };
+	
+	public static String getClientIpAddress(HttpServletRequest request) {
+	    for (String header : HEADERS_TO_TRY) {
+	        String ip = request.getHeader(header);
+	        if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+	            return ip;
+	        }
+	    }
+	    return request.getRemoteAddr();
+	}
+	
 	/**
 	 * Escape an html string. Escaping data received from the client helps to
 	 * prevent cross-site script vulnerabilities.
@@ -44,5 +72,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
+	}
+
+	public String getClientIpAddress() throws IllegalArgumentException {
+		return getClientIpAddress(getThreadLocalRequest());
 	}
 }
