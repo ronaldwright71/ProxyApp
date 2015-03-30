@@ -15,10 +15,20 @@
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/proxyapp/greet</url-pattern>
   </servlet-mapping>
+    
+  <servlet>
+    <servlet-name>hostingServlet</servlet-name>
+    <servlet-class>com.google.gwt.proxyapp.server.GwtHostingServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>hostingServlet</servlet-name>
+  	<url-pattern>proxyapp/hosting/hostingServlet</url-pattern>    
+  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>ProxyApp.html</welcome-file>
+    <welcome-file>ProxyApp.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>

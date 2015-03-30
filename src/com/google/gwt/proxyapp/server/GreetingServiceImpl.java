@@ -1,7 +1,6 @@
 package com.google.gwt.proxyapp.server;
 
 import javax.servlet.http.HttpServletRequest;
-
 import com.google.gwt.proxyapp.client.GreetingService;
 import com.google.gwt.proxyapp.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -12,7 +11,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
-
+	
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
 		if (!FieldVerifier.isValidName(input)) {
@@ -32,6 +31,20 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo
 				+ ".<br><br>It looks like you are using:<br>" + userAgent  +
 				"<br><br> and your ip-address is " + getClientIpAddress();
+	}
+	/**
+	 * Escape an html string. Escaping data received from the client helps to
+	 * prevent cross-site script vulnerabilities.
+	 * 
+	 * @param html the html string to escape
+	 * @return the escaped string
+	 */
+	private String escapeHtml(String html) {
+		if (html == null) {
+			return null;
+		}
+		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+				.replaceAll(">", "&gt;");
 	}
 	/**
 	 * List of possible strings to check for remote client ip-address 
@@ -55,25 +68,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	        if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
 	            return ip;
 	        }
-	    }
+	    }	    
 	    return request.getRemoteAddr();
 	}
-	
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
-	}
-
+	  
 	public String getClientIpAddress() throws IllegalArgumentException {
 		return getClientIpAddress(getThreadLocalRequest());
 	}

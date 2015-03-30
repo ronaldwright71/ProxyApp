@@ -12,10 +12,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -41,9 +43,15 @@ public class ProxyApp implements EntryPoint {
 	public void onModuleLoad() {
 		final Button sendButton = new Button("Send");
 		final TextBox nameField = new TextBox();
-		nameField.setText("GWT User");
+		String nameGWT = ("GWT User");
+		nameField.setText(nameGWT);
+		final Hidden nameHidden = new Hidden(); 
+		nameHidden.setValue(nameGWT);
+		nameHidden.setDefaultValue(nameGWT);
 		final Label errorLabel = new Label();
         final Label afaIk = new Label();
+        final Button hostingButton = new Button("Hosting");
+
 		// We can add style names to widgets
 		sendButton.addStyleName("sendButton");
 
@@ -53,6 +61,7 @@ public class ProxyApp implements EntryPoint {
 		RootPanel.get("sendButtonContainer").add(sendButton);
 		RootPanel.get("errorLabelContainer").add(errorLabel);
         RootPanel.get("afaIkContainer").add(afaIk);
+        RootPanel.get("hostingButtonContainer").add(hostingButton);;
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
 		nameField.selectAll();
@@ -83,6 +92,7 @@ public class ProxyApp implements EntryPoint {
 				sendButton.setFocus(true);
 			}
 		});
+
 		greetingService.getClientIpAddress( 
 				new AsyncCallback<String>() {
 					public void onFailure(Throwable caught) {}
@@ -125,13 +135,6 @@ public class ProxyApp implements EntryPoint {
 				textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText(""); 
 				
-				greetingService.getClientIpAddress( 
-						new AsyncCallback<String>() {
-							public void onFailure(Throwable caught) {}
-							public void onSuccess(String result) {
-								afaIk.setText("AFAIK that's it " + result);
-							}
-						});
 				greetingService.greetServer(textToServer,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
@@ -156,12 +159,30 @@ public class ProxyApp implements EntryPoint {
 						});
 			}
 		}
+		class HostingHandler implements ClickHandler {
+			/**
+			 * Fired when the user clicks on the hostingButton.
+			 */
+			public void onClick(ClickEvent event) {
+				sendHostingToServer();
+			}
 
+
+			private void sendHostingToServer() {
+				hostingButton.setEnabled(false);
+				
+				return;
+			}
+
+		}
 
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
+		HostingHandler hostinghandler = new HostingHandler();
 		sendButton.addClickHandler(handler);
+		hostingButton.addClickHandler(hostinghandler);
 		nameField.addKeyUpHandler(handler);
 
 	}
+
 }

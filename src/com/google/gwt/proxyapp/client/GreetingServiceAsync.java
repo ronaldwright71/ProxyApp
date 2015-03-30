@@ -10,6 +10,9 @@ public interface GreetingServiceAsync {
 	void greetServer(String input, AsyncCallback<String> callback)
 			throws IllegalArgumentException;
 	
-	void getClientIpAddress(AsyncCallback<String> callback);
+	void getClientIpAddress(AsyncCallback<String> callback)
+			throws IllegalArgumentException;
 
+//	void w(String string, AsyncCallback<String> callback)
+//			throws IllegalArgumentException;
 }
