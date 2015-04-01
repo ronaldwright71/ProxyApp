@@ -13,6 +13,4 @@ public interface GreetingServiceAsync {
 	void getClientIpAddress(AsyncCallback<String> callback)
 			throws IllegalArgumentException;
 
-//	void w(String string, AsyncCallback<String> callback)
-//			throws IllegalArgumentException;
 }

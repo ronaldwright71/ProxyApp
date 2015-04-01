@@ -22,16 +22,13 @@
     <!-- If you add any GWT meta tags, they must   -->
     <!-- be added before this line.                -->
     <!--                                           -->
-    <script type="text/javascript" language="javascript" src="proxyapp/proxyapp.nocache.js"></script>
+    <script type="text/javascript" src="proxyapp/proxyapp.nocache.js"></script>
   </head>
 
   <body>
 <form>
 <input type="hidden" name="nameFieldh" value="hello"/>
 </form>  
-<% 	String nameFieldx = request.getParameter("nameFieldh") + "";
-	if (nameFieldx.compareTo("null") == 0) nameFieldx = ""; 
-	pageContext.setAttribute("nameFieldh", nameFieldx); %>
     <!-- web app will not function without JavaScript enabled -->
     <noscript>
       <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
@@ -42,7 +39,8 @@
 
     <h1>Web Application Tools and Proxy Service</h1>
 
-    <table align="center">
+    <Table align="center">
+    
       <tr>
         <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
       </tr>
@@ -52,17 +50,12 @@
       </tr>
       <tr>
       	<td id ="hostingButtonContainer"></td>
-      	<td> <form action="/proxyapp/hosting/hostingServlet" method = "get">
-      			<input type="submit" name="button1" value="Button 1" />
-      		</form>
-      	</td>
       <tr>
-        <td>${fn:escapeXml(nameFieldh)}</td>
-        <td id="afaIkContainer">${fn:escapeXml(afaIk)}</td>
+        <td id="afaIkContainer"></td>
       </tr>
       <tr>
         <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
       </tr>
-    </table>
+    </Table>
   </body>
 </html>

@@ -23,7 +23,7 @@
   
   <servlet-mapping>
   	<servlet-name>hostingServlet</servlet-name>
-  	<url-pattern>proxyapp/hosting/hostingServlet</url-pattern>    
+  	<url-pattern>/proxyapp/hosting/hostingServlet</url-pattern>    
   </servlet-mapping>
   
   <!-- Default page to serve -->

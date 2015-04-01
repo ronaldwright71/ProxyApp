@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -17,7 +18,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -169,8 +169,8 @@ public class ProxyApp implements EntryPoint {
 
 
 			private void sendHostingToServer() {
-				hostingButton.setEnabled(false);
-				
+				String textToServer=nameField.getText();
+				Window.Location.assign("./proxyapp/hosting/hostingServlet?clientName="+ textToServer);
 				return;
 			}
 
