@@ -26,6 +26,26 @@
   	<url-pattern>/proxyapp/hosting/hostingServlet</url-pattern>    
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>clientListServlet</servlet-name>
+    <servlet-class>com.google.gwt.proxyapp.server.ClientListServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>clientListServlet</servlet-name>
+    <url-pattern>proxyapp/hosting/clientListServlet</url-pattern>    
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>clientUpdServlet</servlet-name>
+    <servlet-class>com.google.gwt.proxyapp.server.ClientUpdServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>clientUpdServlet</servlet-name>
+    <url-pattern>proxyapp/hosting/clientUpdServlet</url-pattern>    
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ProxyApp.jsp</welcome-file>

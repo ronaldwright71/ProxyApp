@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gwt.proxyapp.shared.FieldVerifier;
+import com.google.gwt.proxyapp.shared.IpVerifier;
 import com.google.gwt.user.client.Window;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -23,15 +24,18 @@ import com.google.appengine.api.datastore.Entity;
 @SuppressWarnings({ "serial", "unused" })
 public class GwtHostingServlet extends HttpServlet {
 	
-		public String getClient() {
-		return curClient;
+	private String curClient;
+	
+	public String getClient() {
+		return this.curClient;
 	}
 
 	public void setClient(String client) {
 		this.curClient = client;
 	}
 
-		public String curClient = "GWT User";
+	public IpVerifier data = new IpVerifier();
+
 	@Override
 	 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
@@ -46,10 +50,11 @@ public class GwtHostingServlet extends HttpServlet {
 	  }
 	 
 	public void doHosting(PrintWriter writer, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-	    setClient(req.getParameter("clientName"));
+		setClient(req.getParameter("clientName"));
 	    String clientName = getClient();
     	if (!FieldVerifier.isValidName(clientName)) {clientName = "FreeWilly"; setClient(clientName);}
-		String ip = getClientIpAddress(req);
+    	data.setCurClient(req);
+		String ip = data.getCurClient();
 		String user = req.getParameter("clientName") + "user";
 		Date date = new Date();
 		
@@ -58,15 +63,15 @@ public class GwtHostingServlet extends HttpServlet {
 	    Key clientKey = KeyFactory.createKey("Client", clientName);
 	    Key dclientKey = KeyFactory.createKey("Dclients", clientName);
 	    
-	    Query q;
-		List<Entity> dclients;
-		
 		String lddclient = ldclientList(datastore);
-	    
-//Testing db reset    	deleteClientRecords(datastore);
-		
-	    q = new Query("Dclients", dclientKey);
-	    dclients = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(5));
+	    //Testing db reset    	deleteClientRecords(datastore);		
+
+		Query q = new Query("Dclients", dclientKey);
+	    List<Entity> dclients = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(5));
+	    if(!dclients.isEmpty()) {
+	    	if( dclients.get(0).getKey().getName().equals("roadrunner")) 
+	    		dclients.get(0).setProperty("updVal", true);
+	    	}
 	    // Run an ancestor query to ensure we see the most up-to-date
 	    // view of the Clients belonging to Default Client List.
 	    Query query = new Query("Clients", clientKey).addSort("date", Query.SortDirection.DESCENDING);
@@ -96,22 +101,10 @@ public class GwtHostingServlet extends HttpServlet {
 	    			"<p>Retrivieng information for Client</p>";
 	    	clientName = clientName + "<p>Comparing to previous</p>";	    	
 	    	//should update?	    
-	    	String clientlist = "";
 			for (Entity client : clients) {
-				String oldip= client.getProperty("ipaddress").toString();
-				if (!oldip.equals(ip)){
-	    			clientName = clientName + "<p>Updating ip Address from " + oldip + " to " + ip + "</p>";
-	    			client.setProperty("ipaddress", ip);
-					datastore.put(client);
-	    		} else {
-	    	        clientName = clientName + "<p>Records for Client " + curClient + " are as follows</p>";
-	        		clientlist = clientlist + "<p>" + client.getProperties().toString() + "</p>";
-//Testing  			client.setProperty("ipaddress", "192.168.0.29");
-//	    			datastore.put(client);
-	    		}
+				clientName = clientName + "<p>Records for Client " + curClient + " are as follows</p>" +
+				"<p>" + client.getProperties().toString() + "</p>";
 	    	}
-
-    		clientName = clientName + clientlist;
 	    }
 		
 		writer.append("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">")
@@ -126,7 +119,7 @@ public class GwtHostingServlet extends HttpServlet {
 	public String ldclientList(DatastoreService datastore) {
 		Query q = new Query("Dclients");
 	    List<Entity> dclients = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(5));
-//	    Check to see if default client list has been loaded 
+	    //Check to see if default client list has been loaded 
 	    if (dclients.isEmpty()){	   
 	    	//No Client List loading defaults
 			addDclients(datastore);
@@ -166,27 +159,8 @@ public class GwtHostingServlet extends HttpServlet {
 		}
 	} 
 	
-	private static final String[] HEADERS_TO_TRY = { 
-	    "X-Forwarded-For",
-	    "Proxy-Client-IP",
-	    "WL-Proxy-Client-IP",
-	    "HTTP_X_FORWARDED_FOR",
-	    "HTTP_X_FORWARDED",
-	    "HTTP_X_CLUSTER_CLIENT_IP",
-	    "HTTP_CLIENT_IP",
-	    "HTTP_FORWARDED_FOR",
-	    "HTTP_FORWARDED",
-	    "HTTP_VIA",
-	    "REMOTE_ADDR" };
+
 	
-	public static String getClientIpAddress(HttpServletRequest request) {
-	    for (String header : HEADERS_TO_TRY) {
-	        String ip = request.getHeader(header);
-	        if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
-	            return ip;
-	        }
-	    }	    
-	    return request.getRemoteAddr();
-	}
+
 
 }
