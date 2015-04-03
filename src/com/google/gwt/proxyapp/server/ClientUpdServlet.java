@@ -15,7 +15,6 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
-import com.google.gwt.proxyapp.shared.IpVerifier;
 
 @SuppressWarnings("serial")
 public class ClientUpdServlet extends HttpServlet {

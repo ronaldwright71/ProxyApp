@@ -1,4 +1,4 @@
-package com.google.gwt.proxyapp.shared;
+package com.google.gwt.proxyapp.server;
 
 import javax.servlet.http.HttpServletRequest;
 

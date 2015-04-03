@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gwt.proxyapp.shared.FieldVerifier;
-import com.google.gwt.proxyapp.shared.IpVerifier;
 import com.google.gwt.user.client.Window;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
