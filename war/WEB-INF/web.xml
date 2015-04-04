@@ -33,7 +33,7 @@
   
   <servlet-mapping>
   	<servlet-name>clientListServlet</servlet-name>
-    <url-pattern>proxyapp/hosting/clientListServlet</url-pattern>    
+    <url-pattern>/proxyapp/hosting/clientListServlet</url-pattern>    
   </servlet-mapping>
   
     <servlet>
@@ -43,7 +43,7 @@
   
   <servlet-mapping>
   	<servlet-name>clientUpdServlet</servlet-name>
-    <url-pattern>proxyapp/hosting/clientUpdServlet</url-pattern>    
+    <url-pattern>/proxyapp/hosting/clientUpdServlet</url-pattern>    
   </servlet-mapping>
   
   <!-- Default page to serve -->

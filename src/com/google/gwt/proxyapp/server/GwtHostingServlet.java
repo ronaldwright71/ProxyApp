@@ -97,12 +97,10 @@ public class GwtHostingServlet extends HttpServlet {
 	    } else {
 	    	
 	    	clientName = "Client name found for: " + curClient + "</p>" +  
-	    			"<p>Retrivieng information for Client</p>";
-	    	clientName = clientName + "<p>Comparing to previous</p>";	    	
-	    	//should update?	    
+	    			"<p>Retrivieng information for Client</p>";	    
 			for (Entity client : clients) {
 				clientName = clientName + "<p>Records for Client " + curClient + " are as follows</p>" +
-				"<p>" + client.getProperties().toString() + "</p>";
+				"<p>" + client.getProperties().toString() + "</p><p><a href=\"" + ip + ":8080/nxappletTest\"><image src=\"img/noMachine.gif\"></a>";
 	    	}
 	    }
 		
