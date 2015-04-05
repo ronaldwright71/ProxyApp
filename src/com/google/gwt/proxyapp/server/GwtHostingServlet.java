@@ -121,7 +121,7 @@ public class GwtHostingServlet extends HttpServlet {
 	  	writer.println("        <p>" + clientName + "</p>");
 	  	writer.println("        <p>");
 	  	writer.println("        <form method=\"post\" action=\"/\">");
-	  	writer.println("        <input class=\".sendButton\" type=\"submit\" value=\"Return\"></input>");
+	  	writer.println("        <input class=\"sendButton\" type=\"submit\" value=\"Return\"></input>");
 	  	writer.println("        </form>");
 	  	writer.println("        </p>");
 	  	writer.println("        </td>");
