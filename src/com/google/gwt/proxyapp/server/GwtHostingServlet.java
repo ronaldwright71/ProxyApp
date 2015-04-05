@@ -100,7 +100,7 @@ public class GwtHostingServlet extends HttpServlet {
 	    			"<p>Retrivieng information for Client</p>";	    
 			for (Entity client : clients) {
 				clientName = clientName + "<p>Records for Client " + curClient + " are as follows</p>" +
-				"<p>" + client.getProperties().toString() + "</p><p><a href=\"" + ip + ":8080/nxappletTest\"><image src=\"img/noMachine.gif\"></a>";
+				"<p>" + client.getProperties().toString() + "</p><p><a href=\"" + ip + ":8080/nxappletTest\"><image src=\"/hosting/img/noMachine.gif\"></a>";
 	    	}
 	    }
 		
