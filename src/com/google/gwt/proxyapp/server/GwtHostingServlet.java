@@ -104,13 +104,33 @@ public class GwtHostingServlet extends HttpServlet {
 	    	}
 	    }
 		
-		writer.append("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">")
-			   .append("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ProxyApp.css\"><title>Ron's Web App Proxy - Tools </title>")
-		       .append("<script type=\"text/javascript\" src=\"/proxyapp/proxyapp.nocache.js\"></script>")
-		       .append("</head><body><table align=\"center\" width=390px><tr><td><div><p><h1>Welcome, " + curClient)
-		       .append("!</h1></p><p>" + clientName + "</p><p><form method=\"post\" action=\"/\">")
-		       .append("<input class=\".sendButton\" type=\"submit\" value=\"Return\"></input></form></p></td></tr>" + 
-		    		   "</table></div></body></html>");
+	    writer.println("<html>");
+	    writer.println("<head>");
+	        writer.println("<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
+	        writer.println("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ProxyApp.css\">");
+	        writer.println("<title>Ron's Web App Proxy - Tools </title>");
+	        writer.println("<script type=\"text/javascript\" src=\"/proxyapp/proxyapp.nocache.js\"></script>");
+	    writer.println("</head>");
+	    writer.println("<body>");
+	    writer.println();
+	      writer.println("<h1>Welcome, " + curClient + "!</h1>");
+	    writer.println();
+	      writer.println("<table align=\"center\" width=390px>");
+	        writer.println("<tr>");
+	  	writer.println("<td>");
+	  	  writer.println("<div>");
+	  	    writer.println("<p> + clientName + </p>");
+	  	    writer.println("<p>");
+	  	      writer.println("<form method=\"post\" action=\"/\">");
+	  		writer.println("<input class=\".sendButton\" type=\"submit\" value=\"Return\"></input>");
+	  	      writer.println("</form>");
+	  	    writer.println("</p>");
+	  	  writer.println("</div>");
+	  	writer.println("</td>");
+	        writer.println("</tr>");
+	      writer.println("</table>");
+	    writer.println("</body>");
+	   writer.println("</html>");
 	}
 
 	public String ldclientList(DatastoreService datastore) {
