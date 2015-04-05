@@ -107,7 +107,7 @@ public class GwtHostingServlet extends HttpServlet {
 		writer.append("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">")
 			   .append("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ProxyApp.css\"><title>Ron's Web App Proxy - Tools </title>")
 		       .append("<script type=\"text/javascript\" src=\"/proxyapp/proxyapp.nocache.js\"></script>")
-		       .append("</head><body><table align=\"center\" width=390px><tr><td><div><p><h1>Hello, " + curClient)
+		       .append("</head><body><table align=\"center\" width=390px><tr><td><div><p><h1>Welcome, " + curClient)
 		       .append("!</h1></p><p>" + clientName + "</p><p><form method=\"post\" action=\"/\">")
 		       .append("<input class=\".sendButton\" type=\"submit\" value=\"Return\"></input></form></p></td></tr>" + 
 		    		   "</table></div></body></html>");
