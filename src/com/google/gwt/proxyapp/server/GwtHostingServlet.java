@@ -100,12 +100,12 @@ public class GwtHostingServlet extends HttpServlet {
 	    			"<p>Retrivieng information for Client</p>";	    
 			for (Entity client : clients) {
 				clientName = clientName + "<p>Records for Client " + curClient + " are as follows</p>" +
-				"<p>" + client.getProperties().toString() + "</p><p><a href=\"" + ip + ":8080/nxappletTest\"><image src=\"/hosting/img/noMachine.gif\"></a>";
+				"<p>" + client.getProperties().toString() + "</p><p><a href=\"http://" + ip + ":8080/nxappletTest\"><image src=\"/hosting/img/noMachine.gif\"></a>";
 	    	}
 	    }
 		
 		writer.append("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">")
-			   .append("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ProxyApp.css\">")
+			   .append("<link type=\"text/css\" rel=\"stylesheet\" href=\"/ProxyApp.css\"><title>Ron's Web App Proxy - Tools </title>")
 		       .append("<script type=\"text/javascript\" src=\"/proxyapp/proxyapp.nocache.js\"></script>")
 		       .append("</head><body><table align=\"center\" width=390px><tr><td><div><p><h1>Hello, " + curClient)
 		       .append("!</h1></p><p>" + clientName + "</p><p><form method=\"post\" action=\"/\">")
