@@ -15,7 +15,27 @@
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/proxyapp/greet</url-pattern>
   </servlet-mapping>
-    
+
+  <servlet>
+    <servlet-name>hostListServlet</servlet-name>  
+    <servlet-class>com.google.gwt.proxyapp.server.GwtHostingServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>hostListServlet</servlet-name>
+    <url-pattern>/proxyapp/hostlist</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>hostPageServlet</servlet-name>  
+    <servlet-class>com.google.gwt.proxyapp.server.GwtPageServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>hostPageServlet</servlet-name>
+    <url-pattern>/proxyapp/gwtpage</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>hostingServlet</servlet-name>
     <servlet-class>com.google.gwt.proxyapp.server.GwtHostingServlet</servlet-class>

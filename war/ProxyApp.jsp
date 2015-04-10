@@ -35,24 +35,22 @@
     </noscript>
 
     <h1>Web Application Tools and Proxy Service</h1>
-
-    <Table align="center">
-    
+    <div id="hostList"></div>
+    <table>
       <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
+        <td colspan="2" style="font-weight:bold;" id="msg1container"></td>        
       </tr>
       <tr>
         <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
+        <td id="sendButtonContainer" align="right"></td>
       </tr>
-      <tr>
-      	<td id ="hostingButtonContainer"></td>
-      <tr>
+      <tr>        
         <td id="afaIkContainer"></td>
+      	<td id ="hostingButtonContainer"></td>
       </tr>
       <tr>
         <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
       </tr>
-    </Table>
+    </table>
   </body>
 </html>

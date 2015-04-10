@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class IpVerifier {
 	private String curClient;
+	private String curClientIp;
 
 	public IpVerifier() {
 
@@ -26,6 +27,27 @@ public class IpVerifier {
 		this.curClient = client.getRemoteAddr();
 	}
 	
+	public void setCurClientIp(HttpServletRequest req) {
+		String ip = "192.168.0.1";
+		
+	    for (String header : HEADERS_TO_TRY) {
+	        ip = req.getHeader(header);
+	        if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+	        	this.curClientIp = ip;
+	        	return;
+	        }
+	    }
+		this.curClientIp = req.getRemoteAddr();
+	}
+	
+	public String getCurClientIp() {
+		return curClientIp;
+	}
+
+	public void setCurClientIp(String curClientIp) {
+		this.curClientIp = curClientIp;
+	}
+
 	private static final String[] HEADERS_TO_TRY = { 
 	    "X-Forwarded-For",
 	    "Proxy-Client-IP",

@@ -10,14 +10,26 @@ h1 {
   text-align: center;
 }
 
+body {text-align:center;}
+
+table {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+tr,td {text-align:left;
+}
+
+.cw-FlexTable td {
+  border: 1px solid #BBBBBB;
+/*  padding: 3px; */
+}
+  
 .sendButton {
   display: block;
   font-size: 16pt;
 }
 
-Table {
-  align: center;
-}
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
   width: 400px;
@@ -31,7 +43,16 @@ Table {
   color: red;
 }
 
+.vp-htmlpanel2 {
+	color: white;
+	background-color: #2062B8; 
+	/**#260DB5; */
+	font-weight: bold;
+}
+
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
+}
+/** ids use sha */
 }
