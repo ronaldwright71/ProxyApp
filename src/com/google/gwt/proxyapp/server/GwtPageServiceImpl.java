@@ -217,9 +217,9 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 	    	}
 	    } else {
 	    	
-	    	clientName = "<p>Client name found for: " + curClient + "....</p>" +  
-	    			"<p>Retrivieng information for Client...<br>" + 
-	    			"Records for Client " + curClient + " are as follows:</p>";
+	    	clientName = "<div class=\"vp-htmlpanel2\"><p>Client name found for: " + curClient + "...." +  
+	    			"Retrivieng information for Client...<br>" + 
+	    			"Records for Client " + curClient + " are as follows:</p></div>";
 					//create a data grid for resulting values
 					
 	    	int i = 0;
@@ -237,6 +237,7 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 				clprop[i] = cp;
 			} 
 			setClientProperties(clprop); //(clientProperties) added host for testing multiple hosts; */
+			setClientProperties(clientProperties);
 	    } 
 		String dfaultClientsAts = Arrays.toString(getDfaultClients()); 
 		String clientPropertiesAts = Arrays.toString(getClientProperties());	    
