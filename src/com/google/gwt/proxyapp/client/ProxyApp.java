@@ -1,5 +1,8 @@
 package com.google.gwt.proxyapp.client;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.google.gwt.proxyapp.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -186,33 +189,39 @@ public class ProxyApp implements EntryPoint {
 				final VerticalPanel vPanel = new VerticalPanel();								
 				
 				hp.doHosting(textToServer, vIp, 
-						new AsyncCallback<String>() {
+						new AsyncCallback<String []>() {
 							@Override
-							public void onFailure(Throwable caught) {vPanel.add(new HTML("Oh Shit"));}
-							public void onSuccess(String result) {
-								data.setClientHtmlName(result);
-								hp.getDfaultClients(
-										new AsyncCallback <String []>(){
-											@Override
-											public void onFailure(Throwable caught) {vPanel.add(new HTML("Oh Shit"));}
-											@Override
-											public void onSuccess(String[] result) {
-												data.getFlexTable().setStyleName("cw-FlexTable");
-												data.getFlexTable().setHTML(0, 0, "Defaults");
-												data.getFlexTable().getFlexCellFormatter().setStyleName(0, 0, "vp-htmlpanel2");
-												int cnt = 1;
-												for (String dclient : result ){
-													data.getFlexTable().setHTML(cnt, 0, dclient);
-													cnt++;
-												}
-												data.getFlexTable().setHTML(0, 1, data.getClientHtmlName());
-												
-												int numRows = data.getFlexTable().getRowCount();
-												data.getFlexTable().getFlexCellFormatter().setRowSpan(0, 1, numRows);
-												data.getFlexTable().getFlexCellFormatter().setVerticalAlignment(0, 1, HasVerticalAlignment.ALIGN_TOP);
-												vPanel.add(data.getFlexTable());
-												RootPanel.get("hostList").add(vPanel);
-											}});					
+							public void onFailure(Throwable caught) {vPanel.add(new HTML("Oh Snap"));}
+							public void onSuccess(String [] result) {
+								//body html
+								data.setClientHtmlName(result[0]);
+								//default client list as string
+								String dclientstr = result[1].toString();
+								
+								List<String> dclients = Arrays.asList((dclientstr).split("\\s*,\\s*"));
+								int cnt = 1;
+								for (String dclient : dclients){
+									data.getFlexTable().setHTML(cnt, 0, dclient);
+									cnt++;
+								}
+								data.getFlexTable().setHTML(0, 1, data.getClientHtmlName());
+								
+								if (result[2].length() >= 4) {
+									@SuppressWarnings("rawtypes")
+									CwDataGrid dataGrid = new CwDataGrid(result);
+									VerticalPanel dataPanel = new VerticalPanel();
+									dataPanel.setCellVerticalAlignment(dataGrid, HasVerticalAlignment.ALIGN_BOTTOM);
+									dataPanel.setSize("780px", "405px");
+									dataGrid.setSize("775px", "400px");
+									dataPanel.add(dataGrid);
+									RootPanel.get("hostList").add(dataPanel);
+								}else {
+									int numRows = data.getFlexTable().getRowCount();
+									data.getFlexTable().getFlexCellFormatter().setRowSpan(0, 1, numRows);
+									data.getFlexTable().getFlexCellFormatter().setVerticalAlignment(0, 1, HasVerticalAlignment.ALIGN_TOP);
+									vPanel.add(data.getFlexTable()); 
+									RootPanel.get("hostList").add(vPanel);									
+								}					
 				}});
 
 /*				hostingService.doHosting(textToServer, vIp,
@@ -283,7 +292,7 @@ public class ProxyApp implements EntryPoint {
 				});
 	}
 	
-	private void doFlexTable(String dclients[], String clientHtmlName){
+/*	private void doFlexTable(String dclients[], String clientHtmlName){
 		FlexTable flexTable = new FlexTable();
 		flexTable.setText(0, 0, "Defaults");
 		int cnt = 1;
@@ -295,6 +304,6 @@ public class ProxyApp implements EntryPoint {
 		int numRows = flexTable.getRowCount();
 		flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
 		
-		}
+		} */
 	
 }

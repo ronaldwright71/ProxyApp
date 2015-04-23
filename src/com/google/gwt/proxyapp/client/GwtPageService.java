@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("gwtpage")
 public interface GwtPageService extends RemoteService {
 	
-	String doHosting(String clname, String vIp) throws IllegalArgumentException;
+	String[] doHosting(String clname, String vIp) throws IllegalArgumentException;
 
 	String[] getDfaultClients()throws IllegalArgumentException;
 }

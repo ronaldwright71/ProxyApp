@@ -8,6 +8,9 @@ public class HostingHandlerData {
 
 	public HostingHandlerData(String clientHtmlName, FlexTable flexTable) {
 		this.clientHtmlName = clientHtmlName;
+		flexTable.setStyleName("cw-FlexTable");
+		flexTable.setHTML(0, 0, "Defaults");
+		flexTable.getFlexCellFormatter().setStyleName(0, 0, "vp-htmlpanel2");
 		this.flexTable = flexTable;
 	}
 
@@ -30,4 +33,5 @@ public class HostingHandlerData {
 	public void setFlexTable(String[] result) {
 		
 	}
+	
 }

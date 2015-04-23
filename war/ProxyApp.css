@@ -21,8 +21,8 @@ tr,td {text-align:left;
 }
 
 .cw-FlexTable td {
-  border: 1px solid #BBBBBB;
-/*  padding: 3px; */
+/*  border: 1px solid #BBBBBB; */ 
+  padding: 3px; 
 }
   
 .sendButton {
@@ -34,7 +34,9 @@ tr,td {text-align:left;
 .gwt-DialogBox {
   width: 400px;
 }
-
+.gwt-imgtestcell {
+  height: 32px;	
+}
 .dialogVPanel {
   margin: 5px;
 }
