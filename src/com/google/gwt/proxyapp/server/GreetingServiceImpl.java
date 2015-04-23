@@ -33,7 +33,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				+ "<br> The client NoMachine applet has been tested using Firefox on Linux and...<br>Chrome on Windows 7" 
 				+ " additional setup is required for <a href=\"https://java.com/en/download/help/enable_panel.xml\">Java</a> under Windows 7<br>"
 				+ "You may want to install the <a href=\"https://www.nomachine.com/download\">NoMachine</a> client rather than use the applet"
-				+ "<br><br>For additional information visit <a href=\"proxyapp/help.html\">help</a> page";
+				+ "<br><br>For additional information visit the <a href=\"help.html\">help</a> page";
 	}
 	/**
 	 * Escape an html string. Escaping data received from the client helps to
