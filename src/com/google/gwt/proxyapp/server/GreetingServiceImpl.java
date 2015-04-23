@@ -29,9 +29,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		userAgent = escapeHtml(userAgent);
 
 		return "Use the <b>Host</b> button to retrieve a list of NX clients for " + input + "<br><br>This host is running " + serverInfo
-				+ ".<br><br>It looks like you are using:<br>" + userAgent  + " The client machine applet has been tested for Firefox-Linux<br>and Chrome-Windows 7" +
-				" additional setup is required for <a href=\"https://java.com/en/download/help/enable_panel.xml\">Java</a> under Windows 7<br>"
-				+ "You may want to install the <a href=\"https://www.nomachine.com/download\">NoMachine</a> client rather than use the applet<br> and your ip-address is " + getClientIpAddress();
+				+ ".<br><br>It looks like your ip-address is " + getClientIpAddress() + " and you are using:<br>" + userAgent  + "<br>"
+				+ "<br> The client NoMachine applet has been tested using Firefox on Linux and...<br>Chrome on Windows 7" 
+				+ " additional setup is required for <a href=\"https://java.com/en/download/help/enable_panel.xml\">Java</a> under Windows 7<br>"
+				+ "You may want to install the <a href=\"https://www.nomachine.com/download\">NoMachine</a> client rather than use the applet"
+				+ "<br><br>For additional information visit <a href=\"proxyapp/help.html\">help</a> page";
 	}
 	/**
 	 * Escape an html string. Escaping data received from the client helps to

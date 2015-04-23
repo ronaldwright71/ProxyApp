@@ -202,7 +202,7 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 	    			setClientName(clientName);
 	    			setClientProperties(new String [0]);
 	    		} else {
-	    			clientName = "<p>No records have been added for this Host " + curClient + ", </p><p>" + 
+	    			clientName = "<p>No records have been added for this Client " + curClient + ", </p><p>" + 
 	    					"Contact <a href=\"ronaldWright71@gmail.com\">ronald.wright71@gmail.com</a>  to setup this host</p>";
 	    			setClientName(clientName);
 	    			setClientProperties(new String [0]);

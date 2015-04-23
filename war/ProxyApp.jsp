@@ -35,6 +35,7 @@
     </noscript>
 
     <h1>Web Application Tools and Proxy Service</h1>
+    <div style="right: 10%; position: absolute; margin-right: 1em"><a href="help.html">help</a></div>
     <div id="hostList"></div>
     <table>
       <tr>
