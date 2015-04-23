@@ -45,13 +45,20 @@ tr,td {text-align:left;
   color: red;
 }
 
+.vp-htmlpanel {
+	color: #2062B8;
+	/*background-color: #2062B8;*/ 
+	/**#260DB5; */
+	font-size: 16pt;
+	font-weight: bold;
+}
+
 .vp-htmlpanel2 {
 	color: white;
 	background-color: #2062B8; 
 	/**#260DB5; */
 	font-weight: bold;
 }
-
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;

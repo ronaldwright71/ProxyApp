@@ -217,7 +217,7 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 	    	}
 	    } else {
 	    	
-	    	clientName = "<div class=\"vp-htmlpanel2\"><p>Client name found for: " + curClient + "...." +  
+	    	clientName = "<div class=\"vp-htmlpanel\"><p>Client name found for: " + curClient + "...." +  
 	    			"Retrivieng information for Client...<br>" + 
 	    			"Records for Client " + curClient + " are as follows:</p></div>";
 					//create a data grid for resulting values
