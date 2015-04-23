@@ -223,21 +223,6 @@ public class ProxyApp implements EntryPoint {
 									RootPanel.get("hostList").add(vPanel);									
 								}					
 				}});
-
-/*				hostingService.doHosting(textToServer, vIp,
-						new AsyncCallback<String>() {
-							@Override
-							public void onFailure(Throwable caught) {
-								msg1
-								.addStyleName("serverResponseLabelError");
-								msg1.setText(SERVER_ERROR);
-								vPanel.add(msg1);
-							}
-							@Override
-							public void onSuccess(String result) {
-								vPanel.add(new HTML(result));
-							}					
-				}); */ 
 			}
 
 		}
@@ -291,19 +276,5 @@ public class ProxyApp implements EntryPoint {
 					}
 				});
 	}
-	
-/*	private void doFlexTable(String dclients[], String clientHtmlName){
-		FlexTable flexTable = new FlexTable();
-		flexTable.setText(0, 0, "Defaults");
-		int cnt = 1;
-		for (String dclient : dclients ){
-			flexTable.setText(cnt, 0, dclient);
-			cnt++;
-		}
-		flexTable.setHTML(0, 1, clientHtmlName);
-		int numRows = flexTable.getRowCount();
-		flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
-		
-		} */
 	
 }

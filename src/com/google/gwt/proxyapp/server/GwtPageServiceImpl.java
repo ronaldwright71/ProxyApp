@@ -225,22 +225,18 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 	    	int i = 0;
 	    	String [] clientProperties = new String [clients.size()]; 
 			for (Entity client : clients) {
-			/*	clientName = clientName + client.getProperties().toString() + 
-				"]</p><p><a href=\"http://" + client.getProperty("ipaddress") + 
-				":8080/nxappletTest\"><image src=\"/hosting/img/noMachine.gif\"></a>";
-				setClientName(clientName); */
 				String tmpClProp = client.getProperties().toString();
 				clientProperties[i] = "{host=" + curClient + ", " + tmpClProp.substring(1,tmpClProp.length());
 				i++;
 	    	}
-			i = clientProperties.length +1;
+/*			i = clientProperties.length +1;
 			String[] clprop = new String[i];
 			clprop[i -1] = "{host=Hackedhost, ipaddress=192.168.0.29, date=Sun Apr 12 18:42:28 PDT 2015, user=bogususer}";
 			i=0;
 			for (String cp : clientProperties){
 				clprop[i] = cp;
-			}
-			setClientProperties(clprop); //(clientProperties) added host for testing multiple hosts;
+			} 
+			setClientProperties(clprop); //(clientProperties) added host for testing multiple hosts; */
 	    } 
 		String dfaultClientsAts = Arrays.toString(getDfaultClients()); 
 		String clientPropertiesAts = Arrays.toString(getClientProperties());	    
@@ -250,7 +246,6 @@ private static final String[] DEFAULT_CLIENT_LIST = {
 	  //List of defaultHosts
 	    data [1] = dfaultClientsAts.substring(1, dfaultClientsAts.length() -1);
 	  //clientProperties; Data table for Client usage & Host Data 
-	  //data [2] = (clientPropertiesAts.length() >= 4 ) ? curClient + ", " + clientPropertiesAts.substring(1, clientPropertiesAts.length() -1) : "";
 		data [2] = (clientPropertiesAts.length() >= 4 ) ? clientPropertiesAts.substring(2, clientPropertiesAts.length() -2) : "";	
 /*		List<String> x = (data[1].isEmpty()) ? null : Arrays.asList((data [1]).split("\\s*,\\s*"));
 		//List of host Records

@@ -313,18 +313,6 @@ public class CwDataGrid<SafeHtml> extends Composite implements InitializeHandler
 
 			  //Image Link
 			    
-/*			    ImageResourceCell myImgCell = new ImageResourceCell() {
-			        public Set<String> getConsumedEvents() {
-			            HashSet<String> events = new HashSet<String>();
-			            events.add("click");
-			            return events;
-			        }
-			    };
-			    
-		    	
-		    	Column<HostRecordNx, ImageResource> imgColumn = new ImgColumn<HostRecordNx, ImageResource>(myImgCell) {};
-*/
-			    
 				@SuppressWarnings("unchecked")
 				Column<HostRecordNx, SafeHtml> imgColumn = new Column<HostRecordNx, SafeHtml>((Cell<SafeHtml>) imgCell) 
 			    		{
@@ -339,7 +327,19 @@ public class CwDataGrid<SafeHtml> extends Composite implements InitializeHandler
 			    };
 			    dataGrid.addColumn(imgColumn, constants.cwDataGridImg());
 				dataGrid.setColumnWidth(imgColumn, 9, Unit.PCT);
-				
+			    
+/*			    ImageResourceCell myImgCell = new ImageResourceCell() {
+			        public Set<String> getConsumedEvents() {
+			            HashSet<String> events = new HashSet<String>();
+			            events.add("click");
+			            return events;
+			        }
+			    };
+			    
+		    	
+		    	Column<HostRecordNx, ImageResource> imgColumn = new ImgColumn<HostRecordNx, ImageResource>(myImgCell) {};
+*/
+	
 	}
 
 	final SafeHtmlCell imgCell = new SafeHtmlCell();
